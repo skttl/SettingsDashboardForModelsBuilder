@@ -1,0 +1,44 @@
+﻿<div ng-controller="Our.SettingsDashboardForModelsBuilder.Controller as vm">
+
+	<form name="settingsForm" novalidate val-form-manager>
+		<umb-load-indicator ng-if="vm.loading">
+		</umb-load-indicator>
+
+		<umb-editor-view ng-if="!vm.loading">
+
+
+			<umb-editor-container class="form-horizontal">
+
+
+				<umb-property property="property" ng-repeat="property in vm.properties">
+					<umb-editor model="property"></umb-editor>
+				</umb-property>
+
+
+			</umb-editor-container>
+
+			<umb-editor-footer>
+
+				<umb-editor-footer-content-right>
+					<umb-button action="vm.promptForSave()"
+								type="button"
+								button-style="success"
+								state="vm.buttonState"
+								shortcut="ctrl+s"
+								label="Save settings"
+								disabled="vm.buttonState === 'busy'">
+					</umb-button>
+					<umb-confirm-action
+										ng-if="vm.promptIsVisible"
+										direction="left"
+										on-confirm="vm.save()"
+										on-cancel="vm.hidePrompt()">
+					</umb-confirm-action>
+
+				</umb-editor-footer-content-right>
+			</umb-editor-footer>
+
+
+		</umb-editor-view>
+	</form>
+</div>
